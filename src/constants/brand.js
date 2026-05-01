@@ -82,10 +82,11 @@ export const BRAND = {
   ],
 
   contact: {
-    phone: "+91  9136775653", // ← replace with real number
+    phone: "+91 9136775653", // ← replace with real number
     email: "info@aspc.in", // ← replace with real email
-    whatsapp: "+919136775653", // ← replace with real WhatsApp
-    address: "India",
+    whatsapp: "+91 9136775653", // ← replace with real WhatsApp
+    address:
+      "RZ 134D street no. 18A, Sadh Nagar Part-2 Palam Colony New Delhi -110045Near Rahul Model Public School",
   },
 
   stats: [
