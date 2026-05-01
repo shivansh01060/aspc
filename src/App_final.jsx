@@ -5,6 +5,7 @@ import StorySection from "./components/sections/StorySection";
 import ProductSection from "./components/sections/ProductSection";
 import QualitySection from "./components/sections/QualitySection";
 import ContactSection from "./components/sections/ContactSection";
+import ScrollToTop from "./components/ui/ScrollToTop";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <ContactSection />
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

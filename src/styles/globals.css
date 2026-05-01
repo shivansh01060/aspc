@@ -1,27 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap");
+/* ── Google Fonts fallback (loaded in index.html) ── */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* ── ASPC Brand Tokens ──────────────────────────────── */
+/* ── Brand tokens ── */
 :root {
   --cream: #faf7f0;
-  --cream-dark: #f0ead6;
-  --warm-white: #fff9f0;
-  --turmeric: #e8a020;
-  --turmeric-lt: #f5c842;
-  --turmeric-dk: #c47a0a;
-  --spice: #c45e1a;
-  --spice-dark: #a04010;
-  --earth: #5c3d1e;
-  --earth-dark: #2c1a0e;
-  --text-primary: #2c1a0e;
-  --text-muted: #7a5c3a;
-  --border: rgba(92, 61, 30, 0.15);
+  --warm-white: #fff8ed;
+  --spice-red: #c8421a;
+  --turmeric-gold: #f5a623;
+  --leaf-green: #5a8a2e;
+  --sun-yellow: #e8b820;
+  --dark-brown: #2c1810;
+  --mid-brown: #6b4c3b;
+  --deep-dark: #1a0f0a;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
 }
 
-/* ── Base ─────────────────────────────────────────── */
+/* ── Reset ── */
 *,
 *::before,
 *::after {
@@ -31,55 +27,22 @@
 }
 
 html {
-  scroll-behavior: auto; /* Lenis handles this */
-  background: var(--cream);
-  color: var(--text-primary);
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: "DM Sans", system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--dark-brown);
+  line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: "Playfair Display", Georgia, serif;
-  line-height: 1.2;
-  color: var(--earth-dark);
-}
-
-/* ── Canvas ───────────────────────────────────────── */
-canvas {
-  touch-action: none;
-}
-
-/* ── Utility classes ──────────────────────────────── */
-.section-pad {
-  padding: 7rem 2rem;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.grain-overlay::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
-
-/* ── Scrollbar ────────────────────────────────────── */
+/* ── Custom scrollbar ── */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -87,6 +50,55 @@ canvas {
   background: var(--cream);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--turmeric-dk);
+  background: var(--spice-red);
   border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--turmeric-gold);
+}
+
+/* ── Text selection ── */
+::selection {
+  background: var(--turmeric-gold);
+  color: var(--deep-dark);
+}
+
+/* ── Grain overlay (applied to App root) ── */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
+/* ── Utility: visually hidden (accessibility) ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid var(--turmeric-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Smooth anchor scroll offset (accounts for fixed navbar) ── */
+[id] {
+  scroll-margin-top: 80px;
 }
