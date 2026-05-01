@@ -1,0 +1,23 @@
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import HeroSection from "./components/sections/HeroSection";
+import StorySection from "./components/sections/StorySection";
+import ProductSection from "./components/sections/ProductSection";
+import QualitySection from "./components/sections/QualitySection";
+import ContactSection from "./components/sections/ContactSection";
+
+export default function App() {
+  return (
+    <div className="grain-overlay">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <StorySection />
+        <ProductSection />
+        <QualitySection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </div>
+  );
+}
