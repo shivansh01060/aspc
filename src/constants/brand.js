@@ -82,9 +82,9 @@ export const BRAND = {
   ],
 
   contact: {
-    phone: "+91 00000 00000", // ← replace with real number
+    phone: "+91 9136775653", // ← replace with real number
     email: "info@aspc.in", // ← replace with real email
-    whatsapp: "+910000000000", // ← replace with real WhatsApp
+    whatsapp: "+91 9136775653", // ← replace with real WhatsApp
     address: "India",
   },
 
