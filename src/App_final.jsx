@@ -13,7 +13,6 @@ export default function App() {
     <div className="grain-overlay">
       <Navbar />
       <main>
-        {/* <HeroSection /> */}
         <VideoSection />
         <StorySection />
         <ProductSection />
