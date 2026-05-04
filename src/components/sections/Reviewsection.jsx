@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 const REVIEWS = [
   {
     name: "Priya Sharma",
-    location: "Delhi",
     rating: 5,
     text: "The turmeric from Ashok Spices Clinic is absolutely unmatched. The colour and aroma are so vibrant — you can tell it's pure. Been using it for 3 years and will never switch.",
     product: "Haldi (Turmeric)",
@@ -16,8 +15,7 @@ const REVIEWS = [
   },
   {
     name: "Rajesh Gupta",
-    location: "Mumbai",
-    rating: 5,
+    rating: 4,
     text: "Their Garam Masala is the secret behind my restaurant's dal makhani. Customers always ask what makes it different. The answer is always Ashok Spices.",
     product: "Garam Masala",
     avatar: "RG",
@@ -25,7 +23,6 @@ const REVIEWS = [
   },
   {
     name: "Anita Verma",
-    location: "Lucknow",
     rating: 5,
     text: "I switched to ASPC red chilli powder last year and my family noticed the difference immediately. No artificial colour, just pure heat and flavour.",
     product: "Red Chilli Powder",
@@ -34,8 +31,7 @@ const REVIEWS = [
   },
   {
     name: "Suresh Patel",
-    location: "Ahmedabad",
-    rating: 5,
+    rating: 4.5,
     text: "We source all our masalas for our catering business from Ashok Spices Clinic. Consistent quality, bulk availability, and prompt delivery every single time.",
     product: "Bulk Supply",
     avatar: "SP",
@@ -43,7 +39,6 @@ const REVIEWS = [
   },
   {
     name: "Meena Iyer",
-    location: "Bangalore",
     rating: 5,
     text: "The coriander and cumin powders are so fresh — you open the packet and the aroma fills the whole kitchen. This is what real spices smell like.",
     product: "Coriander & Cumin",
@@ -52,8 +47,7 @@ const REVIEWS = [
   },
   {
     name: "Deepak Joshi",
-    location: "Jaipur",
-    rating: 5,
+    rating: 4,
     text: "FSSAI compliant, no additives, honest packaging — exactly what I was looking for. Ashok Spices Clinic has earned a lifelong customer in me.",
     product: "Kitchen King Masala",
     avatar: "DJ",
@@ -61,8 +55,7 @@ const REVIEWS = [
   },
   {
     name: "Kavita Singh",
-    location: "Varanasi",
-    rating: 5,
+    rating: 4.7,
     text: "20 years of experience really shows. Every blend is perfectly balanced. The Chaat Masala is so good my kids put it on everything!",
     product: "Chaat Masala",
     avatar: "KS",
@@ -70,8 +63,7 @@ const REVIEWS = [
   },
   {
     name: "Mohammed Ansari",
-    location: "Hyderabad",
-    rating: 5,
+    rating: 4,
     text: "I run a biryani shop and the quality of spices directly impacts my business. ASPC has never let me down — same great quality every batch.",
     product: "Whole Spices",
     avatar: "MA",
