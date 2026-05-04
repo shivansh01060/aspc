@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const PILLARS = [
   {
     stat: "20+",
+    suffix: "+",
     label: "Years of Heritage",
     desc: "Two decades of mastering the art of spice — not a shortcut in sight. We do this the hard way because the hard way tastes better.",
     color: "#F5A623",
@@ -19,12 +20,14 @@ const PILLARS = [
   },
   {
     stat: "100%",
+    suffix: "%",
     label: "Natural & Pure",
     desc: "Zero additives. Zero artificial colour. Zero compromise. Just the spice — exactly as nature intended it.",
     color: "#C8421A",
   },
   {
-    stat: "∞",
+    stat: "100%",
+    suffix: "%",
     label: "Flavour Guarantee",
     desc: "We stake our name on every batch. Aroma, colour, and taste — checked before it leaves our hands, guaranteed when it reaches yours.",
     color: "#E8B820",
@@ -103,14 +106,15 @@ export default function QualitySection() {
                 duration: 1.8,
                 ease: "power2.out",
                 onUpdate: function () {
-                  numEl.textContent =
-                    (raw.includes("+")
-                      ? Math.floor(this.targets()[0].val) + "+"
-                      : "") ||
-                    (raw.includes("%")
-                      ? Math.floor(this.targets()[0].val) + "%"
-                      : "") ||
-                    Math.floor(this.targets()[0].val);
+                  const val = Math.floor(this.targets()[0].val);
+
+                  if (raw.includes("+")) {
+                    numEl.textContent = val + "+";
+                  } else if (raw.includes("%")) {
+                    numEl.textContent = val + "%";
+                  } else {
+                    numEl.textContent = val;
+                  }
                 },
                 scrollTrigger: { trigger: el, start: "top 88%" },
               },
@@ -227,7 +231,7 @@ export default function QualitySection() {
           <span
             style={{
               fontFamily: '"EB Garamond", Georgia, serif',
-              fontSize: "12px",
+              fontSize: "10px",
               fontWeight: 700,
               letterSpacing: "4px",
               textTransform: "uppercase",
@@ -304,7 +308,7 @@ export default function QualitySection() {
               />
               <div
                 className="stat-number"
-                data-value={parseFloat(p.stat) || 0}
+                data-value={p.stat}
                 style={{
                   fontSize: "clamp(2.4rem, 5vw, 3.2rem)",
                   fontFamily: '"Playfair Display", Georgia, serif',
