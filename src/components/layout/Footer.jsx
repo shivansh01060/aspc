@@ -24,25 +24,36 @@ export default function Footer() {
           <div>
             <img
               src="/logo.png"
-              alt="ASPC"
+              alt="Ashok Spices Clinic"
               onError={(e) => (e.target.style.display = "none")}
               style={{
-                height: "52px",
+                height: "64px",
                 marginBottom: "16px",
                 objectFit: "contain",
               }}
             />
+            <div
+              style={{
+                fontFamily: '"Playfair Display", Georgia, serif',
+                fontWeight: 800,
+                fontSize: "1.1rem",
+                color: "rgba(250,247,240,0.85)",
+                marginBottom: "8px",
+              }}
+            >
+              Ashok Spices Clinic
+            </div>
             <p
               style={{
-                fontSize: "0.9rem",
+                fontFamily: '"EB Garamond", Georgia, serif',
+                fontSize: "0.95rem",
                 lineHeight: 1.75,
-                marginTop: "8px",
-                color: "rgba(250,247,240,0.55)",
+                marginTop: "4px",
+                color: "rgba(250,247,240,0.5)",
                 maxWidth: "240px",
               }}
             >
-              Ashok Spice Clinic — premium spices, pure ingredients, generations
-              of trust.
+              Premium spices, pure ingredients, generations of trust.
             </p>
           </div>
 
@@ -50,6 +61,7 @@ export default function Footer() {
           <div>
             <h4
               style={{
+                fontFamily: '"EB Garamond", Georgia, serif',
                 fontSize: "0.75rem",
                 letterSpacing: "3px",
                 textTransform: "uppercase",
@@ -83,9 +95,10 @@ export default function Footer() {
                       <a
                         href={href}
                         style={{
+                          fontFamily: '"EB Garamond", Georgia, serif',
                           color: "rgba(250,247,240,0.6)",
                           textDecoration: "none",
-                          fontSize: "0.9rem",
+                          fontSize: "1rem",
                           transition: "color 0.2s ease",
                         }}
                         onMouseEnter={(e) => (e.target.style.color = "#FAF7F0")}
@@ -106,6 +119,7 @@ export default function Footer() {
           <div>
             <h4
               style={{
+                fontFamily: '"EB Garamond", Georgia, serif',
                 fontSize: "0.75rem",
                 letterSpacing: "3px",
                 textTransform: "uppercase",
@@ -123,9 +137,10 @@ export default function Footer() {
                 <a
                   href={`tel:${BRAND.contact.phone}`}
                   style={{
+                    fontFamily: '"EB Garamond", Georgia, serif',
                     color: "rgba(250,247,240,0.6)",
                     textDecoration: "none",
-                    fontSize: "0.9rem",
+                    fontSize: "1rem",
                     transition: "color 0.2s ease",
                   }}
                   onMouseEnter={(e) => (e.target.style.color = "#FAF7F0")}
@@ -140,9 +155,10 @@ export default function Footer() {
                 <a
                   href={`mailto:${BRAND.contact.email}`}
                   style={{
+                    fontFamily: '"EB Garamond", Georgia, serif',
                     color: "rgba(250,247,240,0.6)",
                     textDecoration: "none",
-                    fontSize: "0.9rem",
+                    fontSize: "1rem",
                     transition: "color 0.2s ease",
                   }}
                   onMouseEnter={(e) => (e.target.style.color = "#FAF7F0")}
@@ -164,8 +180,9 @@ export default function Footer() {
                     gap: "8px",
                     background: "#25D366",
                     color: "#fff",
+                    fontFamily: '"EB Garamond", Georgia, serif',
                     fontWeight: 600,
-                    fontSize: "0.85rem",
+                    fontSize: "0.95rem",
                     padding: "10px 18px",
                     borderRadius: "100px",
                     textDecoration: "none",
@@ -189,11 +206,12 @@ export default function Footer() {
             flexWrap: "wrap",
             justifyContent: "space-between",
             gap: "12px",
-            fontSize: "0.8rem",
+            fontFamily: '"EB Garamond", Georgia, serif',
+            fontSize: "0.85rem",
             color: "rgba(250,247,240,0.35)",
           }}
         >
-          <span>© {year} Ashok Spice Clinic. All rights reserved.</span>
+          <span>© {year} Ashok Spices Clinic. All rights reserved.</span>
           <span>Pure Spices · Honest Sourcing · Trusted Heritage</span>
         </div>
       </div>

@@ -8,34 +8,49 @@ const PILLARS = [
   {
     stat: "20+",
     label: "Years of Heritage",
-    desc: "Decades of mastering the art of spice — passed through generations.",
+    desc: "Two decades of mastering the art of spice — not a shortcut in sight. We do this the hard way because the hard way tastes better.",
     color: "#F5A623",
   },
   {
     stat: "14",
     label: "Signature Products",
-    desc: "From whole spices to hand-blended masalas, each formulated to perfection.",
+    desc: "Every product in our range has been obsessively tested. If it doesn't pass our kitchen, it never reaches yours.",
     color: "#5A8A2E",
   },
   {
     stat: "100%",
     label: "Natural & Pure",
-    desc: "Zero additives, zero artificial colour. Just the spice — nothing else.",
+    desc: "Zero additives. Zero artificial colour. Zero compromise. Just the spice — exactly as nature intended it.",
     color: "#C8421A",
   },
   {
     stat: "∞",
     label: "Flavour Guarantee",
-    desc: "Every batch tested for aroma, colour, and taste before it reaches you.",
+    desc: "We stake our name on every batch. Aroma, colour, and taste — checked before it leaves our hands, guaranteed when it reaches yours.",
     color: "#E8B820",
   },
 ];
 
 const QUALITY_MARKS = [
-  { icon: "🔬", text: "Lab Tested Batches" },
-  { icon: "🌿", text: "No Artificial Colours" },
+  { icon: "🔬", text: "Lab Tested Every Batch" },
+  { icon: "🌿", text: "Zero Artificial Colours" },
   { icon: "📦", text: "Airtight Freshness Seal" },
   { icon: "✅", text: "FSSAI Compliant" },
+  { icon: "🏆", text: "20+ Years of Trust" },
+  { icon: "🤝", text: "Direct from Source" },
+];
+
+const TRUST_STATEMENTS = [
+  {
+    quote:
+      "If it isn't good enough for our own kitchen, it doesn't leave the factory.",
+    author: "Our founding principle",
+  },
+  {
+    quote:
+      "Every spice we sell is one we cook with ourselves. That's not a policy — it's a promise.",
+    author: "Ashok Spices Clinic",
+  },
 ];
 
 export default function QualitySection() {
@@ -44,10 +59,10 @@ export default function QualitySection() {
   const statsRef = useRef([]);
   const marksRef = useRef(null);
   const bannerRef = useRef(null);
+  const quotesRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading
       gsap.fromTo(
         headingRef.current,
         { opacity: 0, y: 50 },
@@ -60,7 +75,6 @@ export default function QualitySection() {
         },
       );
 
-      // Stat cards
       statsRef.current.forEach((el, i) => {
         if (!el) return;
         gsap.fromTo(
@@ -77,7 +91,6 @@ export default function QualitySection() {
           },
         );
 
-        // Number count-up for numeric stats
         const numEl = el.querySelector(".stat-number");
         if (numEl) {
           const raw = numEl.dataset.value;
@@ -106,7 +119,6 @@ export default function QualitySection() {
         }
       });
 
-      // Quality marks
       if (marksRef.current) {
         gsap.fromTo(
           marksRef.current.querySelectorAll(".quality-mark"),
@@ -114,7 +126,7 @@ export default function QualitySection() {
           {
             opacity: 1,
             y: 0,
-            stagger: 0.1,
+            stagger: 0.08,
             duration: 0.6,
             ease: "power2.out",
             scrollTrigger: { trigger: marksRef.current, start: "top 85%" },
@@ -122,7 +134,21 @@ export default function QualitySection() {
         );
       }
 
-      // Banner slide-in
+      if (quotesRef.current) {
+        gsap.fromTo(
+          quotesRef.current.querySelectorAll(".trust-quote"),
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: { trigger: quotesRef.current, start: "top 85%" },
+          },
+        );
+      }
+
       gsap.fromTo(
         bannerRef.current,
         { opacity: 0, scale: 0.96, y: 40 },
@@ -136,7 +162,6 @@ export default function QualitySection() {
         },
       );
 
-      // Slow parallax on accent orbs
       gsap.to(".quality-orb", {
         y: -60,
         ease: "none",
@@ -163,7 +188,7 @@ export default function QualitySection() {
         padding: "120px 0",
       }}
     >
-      {/* Decorative orb */}
+      {/* Orbs */}
       <div
         className="quality-orb"
         style={{
@@ -201,6 +226,7 @@ export default function QualitySection() {
         >
           <span
             style={{
+              fontFamily: '"EB Garamond", Georgia, serif',
               fontSize: "12px",
               fontWeight: 700,
               letterSpacing: "4px",
@@ -210,26 +236,28 @@ export default function QualitySection() {
               marginBottom: "16px",
             }}
           >
-            Why Choose ASPC
+            Why Choose Ashok Spices Clinic
           </span>
           <h2
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               fontFamily: '"Playfair Display", Georgia, serif',
-              fontWeight: 700,
+              fontWeight: 800,
               color: "#FAF7F0",
               lineHeight: 1.2,
               margin: 0,
             }}
           >
-            Quality You Can Taste
+            Quality You Can{" "}
+            <em style={{ color: "#F5A623", fontStyle: "italic" }}>Taste</em>
           </h2>
           <p
             style={{
               marginTop: "16px",
-              fontSize: "1.05rem",
+              fontFamily: '"EB Garamond", Georgia, serif',
+              fontSize: "1.15rem",
               color: "rgba(250,247,240,0.65)",
-              maxWidth: "520px",
+              maxWidth: "560px",
               marginLeft: "auto",
               marginRight: "auto",
               lineHeight: 1.7,
@@ -263,7 +291,6 @@ export default function QualitySection() {
                 overflow: "hidden",
               }}
             >
-              {/* Top accent bar */}
               <div
                 style={{
                   position: "absolute",
@@ -281,7 +308,7 @@ export default function QualitySection() {
                 style={{
                   fontSize: "clamp(2.4rem, 5vw, 3.2rem)",
                   fontFamily: '"Playfair Display", Georgia, serif',
-                  fontWeight: 700,
+                  fontWeight: 800,
                   color: p.color,
                   lineHeight: 1,
                   marginBottom: "8px",
@@ -291,7 +318,8 @@ export default function QualitySection() {
               </div>
               <div
                 style={{
-                  fontSize: "0.85rem",
+                  fontFamily: '"EB Garamond", Georgia, serif',
+                  fontSize: "0.82rem",
                   fontWeight: 700,
                   letterSpacing: "2px",
                   textTransform: "uppercase",
@@ -303,9 +331,10 @@ export default function QualitySection() {
               </div>
               <p
                 style={{
-                  fontSize: "0.92rem",
+                  fontFamily: '"EB Garamond", Georgia, serif',
+                  fontSize: "1rem",
                   color: "rgba(250,247,240,0.7)",
-                  lineHeight: 1.7,
+                  lineHeight: 1.75,
                   margin: 0,
                 }}
               >
@@ -315,15 +344,15 @@ export default function QualitySection() {
           ))}
         </div>
 
-        {/* Quality marks row */}
+        {/* Quality marks */}
         <div
           ref={marksRef}
           style={{
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            gap: "16px",
-            marginBottom: "72px",
+            gap: "12px",
+            marginBottom: "80px",
           }}
         >
           {QUALITY_MARKS.map((m) => (
@@ -338,7 +367,8 @@ export default function QualitySection() {
                 border: "1px solid rgba(245,166,35,0.2)",
                 borderRadius: "100px",
                 padding: "10px 20px",
-                fontSize: "0.9rem",
+                fontFamily: '"EB Garamond", Georgia, serif',
+                fontSize: "0.95rem",
                 color: "#FAF7F0",
                 fontWeight: 500,
               }}
@@ -349,7 +379,69 @@ export default function QualitySection() {
           ))}
         </div>
 
-        {/* CTA Banner — contact-focused, NO order now */}
+        {/* ── Trust Quotes ── */}
+        <div
+          ref={quotesRef}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "24px",
+            marginBottom: "80px",
+          }}
+        >
+          {TRUST_STATEMENTS.map((ts, i) => (
+            <div
+              key={i}
+              className="trust-quote"
+              style={{
+                background: "rgba(245,166,35,0.05)",
+                border: "1px solid rgba(245,166,35,0.15)",
+                borderLeft: "3px solid #F5A623",
+                borderRadius: "0 16px 16px 0",
+                padding: "32px 28px",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: '"Playfair Display", Georgia, serif',
+                  fontSize: "2.4rem",
+                  color: "#F5A623",
+                  lineHeight: 0.6,
+                  marginBottom: "16px",
+                  opacity: 0.6,
+                }}
+              >
+                "
+              </div>
+              <p
+                style={{
+                  fontFamily: '"EB Garamond", Georgia, serif',
+                  fontSize: "1.15rem",
+                  fontStyle: "italic",
+                  color: "rgba(250,247,240,0.85)",
+                  lineHeight: 1.7,
+                  margin: "0 0 16px",
+                }}
+              >
+                {ts.quote}
+              </p>
+              <span
+                style={{
+                  fontFamily: '"EB Garamond", Georgia, serif',
+                  fontSize: "0.8rem",
+                  letterSpacing: "2px",
+                  textTransform: "uppercase",
+                  color: "#F5A623",
+                  fontWeight: 600,
+                }}
+              >
+                — {ts.author}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Banner */}
         <div
           ref={bannerRef}
           style={{
@@ -374,23 +466,24 @@ export default function QualitySection() {
             style={{
               fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
               fontFamily: '"Playfair Display", Georgia, serif',
-              fontWeight: 700,
+              fontWeight: 800,
               color: "#fff",
               marginBottom: "16px",
             }}
           >
-            Ready to Experience Pure Spice?
+            Ready to Taste the Difference?
           </h3>
           <p
             style={{
-              color: "rgba(255,255,255,0.85)",
-              fontSize: "1.05rem",
+              fontFamily: '"EB Garamond", Georgia, serif',
+              color: "rgba(255,255,255,0.88)",
+              fontSize: "1.15rem",
               marginBottom: "32px",
               lineHeight: 1.6,
             }}
           >
-            Reach out to us for bulk enquiries, pricing, or to learn more about
-            our products.
+            Reach out for bulk enquiries, pricing, or to learn more. We respond
+            within the hour on WhatsApp.
           </p>
           <a
             href="#contact"
@@ -398,8 +491,9 @@ export default function QualitySection() {
               display: "inline-block",
               background: "#fff",
               color: "#C8421A",
+              fontFamily: '"EB Garamond", Georgia, serif',
               fontWeight: 700,
-              fontSize: "0.95rem",
+              fontSize: "1.05rem",
               letterSpacing: "1px",
               padding: "14px 36px",
               borderRadius: "100px",

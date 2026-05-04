@@ -9,7 +9,7 @@ const STORY_STEPS = [
   {
     icon: "🌱",
     title: "Sourced from Nature",
-    body: "Every spice at Ashok Spice Clinic begins its journey on carefully chosen farms across India — where soil, climate, and tradition converge to create exceptional flavour.",
+    body: "Every spice at Ashok Spices Clinic begins its journey on carefully chosen farms across India — where soil, climate, and tradition converge to create exceptional flavour.",
     accent: "#5A8A2E",
   },
   {
@@ -21,13 +21,13 @@ const STORY_STEPS = [
   {
     icon: "🏅",
     title: "Trusted Heritage",
-    body: "For over two decades, ASPC has been the trusted name in households and commercial kitchens alike. Our name is synonymous with purity, potency, and consistency.",
+    body: "For over two decades, Ashok Spices Clinic has been the trusted name in households and commercial kitchens alike. Our name is synonymous with purity, potency, and consistency.",
     accent: "#F5A623",
   },
   {
     icon: "🌍",
     title: "Delivered to You",
-    body: "Whether you are a home chef, a restaurant, or a food manufacturer — ASPC supplies across the region with care, speed, and the assurance of quality on every pack.",
+    body: "Whether you are a home chef, a restaurant, or a food manufacturer — we supply across the region with care, speed, and the assurance of quality on every pack.",
     accent: "#E8B820",
   },
 ];
@@ -37,10 +37,10 @@ export default function StorySection() {
   const headingRef = useRef(null);
   const lineRef = useRef(null);
   const cardsRef = useRef([]);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading animation
       gsap.fromTo(
         headingRef.current,
         { opacity: 0, y: 60 },
@@ -49,14 +49,10 @@ export default function StorySection() {
           y: 0,
           duration: 1,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 85%",
-          },
+          scrollTrigger: { trigger: headingRef.current, start: "top 85%" },
         },
       );
 
-      // Animated divider line
       gsap.fromTo(
         lineRef.current,
         { scaleX: 0 },
@@ -64,14 +60,26 @@ export default function StorySection() {
           scaleX: 1,
           duration: 1,
           ease: "power2.out",
-          scrollTrigger: {
-            trigger: lineRef.current,
-            start: "top 85%",
-          },
+          scrollTrigger: { trigger: lineRef.current, start: "top 85%" },
         },
       );
 
-      // Cards staggered reveal
+      // Video reveal
+      if (videoRef.current) {
+        gsap.fromTo(
+          videoRef.current,
+          { opacity: 0, x: -60, scale: 0.96 },
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 1.1,
+            ease: "power3.out",
+            scrollTrigger: { trigger: videoRef.current, start: "top 85%" },
+          },
+        );
+      }
+
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
         gsap.fromTo(
@@ -84,14 +92,10 @@ export default function StorySection() {
             duration: 0.8,
             delay: i * 0.15,
             ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 88%",
-            },
+            scrollTrigger: { trigger: card, start: "top 88%" },
           },
         );
 
-        // Hover parallax
         const handleEnter = () =>
           gsap.to(card, {
             y: -8,
@@ -105,7 +109,6 @@ export default function StorySection() {
         card.addEventListener("mouseleave", handleLeave);
       });
 
-      // Parallax on the decorative orbs
       gsap.to(".story-orb-1", {
         y: -80,
         ease: "none",
@@ -143,7 +146,7 @@ export default function StorySection() {
         padding: "120px 0",
       }}
     >
-      {/* Decorative background orbs */}
+      {/* Decorative orbs */}
       <div
         className="story-orb-1"
         style={{
@@ -173,13 +176,7 @@ export default function StorySection() {
         }}
       />
 
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 32px",
-        }}
-      >
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 32px" }}>
         {/* Section header */}
         <div
           ref={headingRef}
@@ -188,6 +185,7 @@ export default function StorySection() {
           <span
             style={{
               display: "inline-block",
+              fontFamily: '"EB Garamond", Georgia, serif',
               fontSize: "12px",
               fontWeight: 700,
               letterSpacing: "4px",
@@ -202,7 +200,7 @@ export default function StorySection() {
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               fontFamily: '"Playfair Display", Georgia, serif',
-              fontWeight: 700,
+              fontWeight: 800,
               color: "#2C1810",
               lineHeight: 1.2,
               margin: 0,
@@ -213,7 +211,8 @@ export default function StorySection() {
           <p
             style={{
               marginTop: "16px",
-              fontSize: "1.1rem",
+              fontFamily: '"EB Garamond", Georgia, serif',
+              fontSize: "1.15rem",
               color: "#6B4C3B",
               maxWidth: "560px",
               marginLeft: "auto",
@@ -221,8 +220,8 @@ export default function StorySection() {
               lineHeight: 1.7,
             }}
           >
-            The ASPC promise — pure spices, honest sourcing, and the kind of
-            flavour that only comes from doing things right.
+            The Ashok Spices Clinic promise — pure spices, honest sourcing, and
+            the kind of flavour that only comes from doing things right.
           </p>
         </div>
 
@@ -246,6 +245,131 @@ export default function StorySection() {
           />
         </div>
 
+        {/* ── Human Element Video Panel ── */}
+        <div
+          ref={videoRef}
+          style={{
+            position: "relative",
+            borderRadius: "35px",
+            overflow: "hidden",
+            marginBottom: "90px",
+            height: "450px",
+            background: "linear-gradient(135deg, #2C1810 0%, #4A2510 100%)",
+          }}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              position: "absolute", // ← ADD
+              inset: 0, // ← ADD
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: 0.75,
+              zIndex: 1, // ← ADD (sits above the fallback)
+            }}
+            onError={(e) => {
+              e.target.style.display = "none";
+            }}
+          >
+            <source src="/video.mp4" type="video/mp4" />
+          </video>
+          Fallback shown when no video
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background:
+                "linear-gradient(135deg, #2C1810 0%, #5C2A10 40%, #8B4513 100%)",
+              zIndex: 0,
+            }}
+          >
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "4rem", marginBottom: "12px" }}>🫙</div>
+              <p
+                style={{
+                  fontFamily: '"Playfair Display", Georgia, serif',
+                  color: "rgba(250,247,240,0.4)",
+                  fontSize: "0.9rem",
+                  letterSpacing: "2px",
+                }}
+              ></p>
+            </div>
+          </div>
+          {/* Gradient overlay */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to right, rgba(44,24,16,0.75) 0%, rgba(44,24,16,0.2) 50%, rgba(44,24,16,0.65) 100%)",
+              pointerEvents: "none",
+              zIndex: 2, // ← ADD
+            }}
+          />
+          {/* Text overlay */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              padding: "0 64px",
+              zIndex: 2, // ← ADD
+            }}
+          >
+            <div style={{ maxWidth: "480px" }}>
+              <span
+                style={{
+                  fontFamily: '"EB Garamond", Georgia, serif',
+                  display: "block",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "4px",
+                  textTransform: "uppercase",
+                  color: "#F5A623",
+                  marginBottom: "16px",
+                }}
+              >
+                The Human Touch
+              </span>
+              <h3
+                style={{
+                  fontFamily: '"Playfair Display", Georgia, serif',
+                  fontSize: "clamp(1.6rem, 4vw, 2.6rem)",
+                  fontWeight: 800,
+                  color: "#FAF7F0",
+                  lineHeight: 1.2,
+                  marginBottom: "20px",
+                }}
+              >
+                Every Blend is a{" "}
+                <em style={{ color: "#F5A623", fontStyle: "italic" }}>
+                  Labour of Love
+                </em>
+              </h3>
+              <p
+                style={{
+                  fontFamily: '"EB Garamond", Georgia, serif',
+                  fontSize: "1.1rem",
+                  color: "rgba(250,247,240,0.8)",
+                  lineHeight: 1.75,
+                }}
+              >
+                Behind every packet is a person — hands that have ground,
+                tested, and refined for 20 years to make sure what reaches you
+                is nothing short of perfect.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Story cards grid */}
         <div
           style={{
@@ -265,7 +389,6 @@ export default function StorySection() {
                 padding: "40px 32px",
                 cursor: "default",
                 boxShadow: "0 4px 24px rgba(44,24,16,0.06)",
-                transition: "box-shadow 0.3s ease",
               }}
             >
               <div
@@ -289,8 +412,8 @@ export default function StorySection() {
               />
               <h3
                 style={{
-                  fontSize: "1.25rem",
                   fontFamily: '"Playfair Display", Georgia, serif',
+                  fontSize: "1.25rem",
                   fontWeight: 700,
                   color: "#2C1810",
                   marginBottom: "12px",
@@ -301,7 +424,8 @@ export default function StorySection() {
               </h3>
               <p
                 style={{
-                  fontSize: "0.95rem",
+                  fontFamily: '"EB Garamond", Georgia, serif',
+                  fontSize: "1rem",
                   color: "#6B4C3B",
                   lineHeight: 1.75,
                   margin: 0,
@@ -312,10 +436,10 @@ export default function StorySection() {
               <div
                 style={{
                   marginTop: "24px",
+                  fontFamily: '"Playfair Display", Georgia, serif',
                   fontSize: "1.5rem",
                   color: step.accent,
                   fontWeight: 700,
-                  fontFamily: "Georgia, serif",
                 }}
               >
                 {String(i + 1).padStart(2, "0")}

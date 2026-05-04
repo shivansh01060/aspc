@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import HeroCanvas from "../canvas/HeroCanvas";
 import { BRAND } from "../../constants/brand";
 
 export default function HeroSection() {
@@ -29,22 +28,98 @@ export default function HeroSection() {
       id="hero"
       style={{
         minHeight: "100vh",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        display: "flex",
+        flexDirection: "column",
         alignItems: "center",
-        padding: "0 48px",
-        paddingTop: "80px",
-        background: "linear-gradient(135deg, #FAF7F0 0%, #FFF8ED 100%)",
+        justifyContent: "center",
+        padding: "100px 24px 60px",
+        position: "relative",
         overflow: "hidden",
-        gap: "32px",
+        textAlign: "center",
       }}
     >
-      {/* Left — text */}
-      <div ref={textRef}>
+      {/* ── Background video layer ── */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          overflow: "hidden",
+        }}
+      >
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: 0.18,
+            filter: "saturate(1.4) brightness(0.85)",
+          }}
+          onError={(e) => {
+            e.target.style.display = "none";
+          }}
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(135deg, #FAF7F0 0%, #FFF8ED 55%, #FAF0DC 100%)",
+            opacity: 0.92,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "-80px",
+            right: "-80px",
+            width: "420px",
+            height: "420px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(245,166,35,0.18) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-80px",
+            left: "-80px",
+            width: "360px",
+            height: "360px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(200,66,26,0.12) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+
+      {/* ── Content ── */}
+      <div
+        ref={textRef}
+        className="hero-content"
+        style={{
+          position: "relative",
+          zIndex: 1,
+          width: "100%",
+          maxWidth: "780px",
+          margin: "0 auto",
+        }}
+      >
+        {/* Brand label */}
         <span
           className="hero-anim"
           style={{
             display: "inline-block",
+            fontFamily: '"EB Garamond", Georgia, serif',
             fontSize: "11px",
             fontWeight: 700,
             letterSpacing: "4px",
@@ -53,42 +128,53 @@ export default function HeroSection() {
             marginBottom: "20px",
           }}
         >
-          Ashok Spice Clinic
+          Ashok Spices Clinic
         </span>
 
+        {/* Headline */}
         <h1
           className="hero-anim"
           style={{
-            fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
+            fontSize: "clamp(2.2rem, 7vw, 5rem)",
             fontFamily: '"Playfair Display", Georgia, serif',
-            fontWeight: 700,
+            fontWeight: 800,
             color: "#2C1810",
-            lineHeight: 1.12,
+            lineHeight: 1.1,
             marginBottom: "24px",
           }}
         >
-          Pure Spices, <span style={{ color: "#C8421A" }}>Pure</span> Flavour
+          Pure Spices,{" "}
+          <em style={{ color: "#C8421A", fontStyle: "italic" }}>Pure</em>{" "}
+          Flavour
         </h1>
 
+        {/* Subtext */}
         <p
           className="hero-anim"
           style={{
-            fontSize: "1.1rem",
+            fontFamily: '"EB Garamond", Georgia, serif',
+            fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
             color: "#6B4C3B",
             lineHeight: 1.75,
-            maxWidth: "440px",
             marginBottom: "36px",
+            maxWidth: "560px",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         >
           Premium hand-crafted spices and masalas from the heart of India.
-          Discover our range and connect with us to bring authentic flavour to
-          your kitchen.
+          Authentic flavour, honest sourcing — delivered to your kitchen.
         </p>
 
-        {/* CTA — contact-focused, no Order Now */}
+        {/* CTA buttons */}
         <div
           className="hero-anim"
-          style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}
+          style={{
+            display: "flex",
+            gap: "12px",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
         >
           <a
             href="#products"
@@ -102,9 +188,10 @@ export default function HeroSection() {
               display: "inline-block",
               background: "#C8421A",
               color: "#fff",
+              fontFamily: '"EB Garamond", Georgia, serif',
               fontWeight: 700,
-              fontSize: "0.9rem",
-              letterSpacing: "1px",
+              fontSize: "clamp(0.95rem, 2vw, 1.05rem)",
+              letterSpacing: "0.5px",
               padding: "14px 32px",
               borderRadius: "100px",
               textDecoration: "none",
@@ -133,11 +220,12 @@ export default function HeroSection() {
               display: "inline-block",
               background: "transparent",
               color: "#2C1810",
+              fontFamily: '"EB Garamond", Georgia, serif',
               fontWeight: 600,
-              fontSize: "0.9rem",
+              fontSize: "clamp(0.95rem, 2vw, 1.05rem)",
               padding: "14px 32px",
               borderRadius: "100px",
-              border: "1.5px solid rgba(44,24,16,0.2)",
+              border: "1.5px solid rgba(44,24,16,0.22)",
               textDecoration: "none",
               transition: "border-color 0.2s ease, color 0.2s ease",
             }}
@@ -146,7 +234,7 @@ export default function HeroSection() {
               e.target.style.color = "#C8421A";
             }}
             onMouseLeave={(e) => {
-              e.target.style.borderColor = "rgba(44,24,16,0.2)";
+              e.target.style.borderColor = "rgba(44,24,16,0.22)";
               e.target.style.color = "#2C1810";
             }}
           >
@@ -159,23 +247,33 @@ export default function HeroSection() {
           className="hero-anim"
           style={{
             display: "flex",
-            gap: "40px",
             marginTop: "56px",
             paddingTop: "36px",
             borderTop: "1px solid rgba(44,24,16,0.08)",
+            justifyContent: "center",
+            maxWidth: "480px",
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         >
           {[
             { value: "14+", label: "Products" },
             { value: "20+", label: "Years" },
             { value: "100%", label: "Natural" },
-          ].map((s) => (
-            <div key={s.label}>
+          ].map((s, i) => (
+            <div
+              key={s.label}
+              style={{
+                flex: 1,
+                borderRight: i < 2 ? "1px solid rgba(44,24,16,0.08)" : "none",
+                padding: "0 20px",
+              }}
+            >
               <div
                 style={{
-                  fontSize: "1.8rem",
+                  fontSize: "clamp(1.5rem, 5vw, 2rem)",
                   fontFamily: '"Playfair Display", Georgia, serif',
-                  fontWeight: 700,
+                  fontWeight: 800,
                   color: "#2C1810",
                   lineHeight: 1,
                 }}
@@ -184,12 +282,13 @@ export default function HeroSection() {
               </div>
               <div
                 style={{
-                  fontSize: "0.75rem",
+                  fontFamily: '"EB Garamond", Georgia, serif',
+                  fontSize: "clamp(0.65rem, 1.5vw, 0.78rem)",
                   fontWeight: 600,
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "#C8421A",
-                  marginTop: "4px",
+                  marginTop: "5px",
                 }}
               >
                 {s.label}
@@ -197,35 +296,76 @@ export default function HeroSection() {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Right — 3D canvas */}
-      <div
-        style={{
-          height: "600px",
-          position: "relative",
-          borderRadius: "24px",
-          overflow: "hidden",
-        }}
-      >
-        <HeroCanvas />
+        {/* Scroll hint */}
+        <div
+          className="hero-anim"
+          style={{
+            marginTop: "48px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "6px",
+            opacity: 0.35,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: '"EB Garamond", Georgia, serif',
+              fontSize: "0.68rem",
+              letterSpacing: "2.5px",
+              textTransform: "uppercase",
+              color: "#2C1810",
+            }}
+          >
+            Scroll
+          </span>
+          <div
+            style={{
+              width: "1px",
+              height: "36px",
+              background: "linear-gradient(to bottom, #C8421A, transparent)",
+            }}
+          />
+        </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
+        /* ── Desktop: wider max-width, bigger breathing room ── */
+        @media (min-width: 1024px) {
           #hero {
-            grid-template-columns: 1fr !important;
-            padding: 100px 24px 60px !important;
-            text-align: center;
+            padding: 120px 48px 80px !important;
           }
-          #hero > div:last-child {
-            height: 360px !important;
+          .hero-content {
+            max-width: 860px !important;
           }
-          #hero .hero-anim:nth-child(4) > div {
-            justify-content: center;
+        }
+ 
+        /* ── Tablet ── */
+        @media (min-width: 600px) and (max-width: 1023px) {
+          #hero {
+            padding: 110px 40px 70px !important;
           }
-          #hero .hero-anim:last-child {
-            justify-content: center;
+          .hero-content {
+            max-width: 680px !important;
+          }
+        }
+ 
+        /* ── Mobile ── */
+        @media (max-width: 599px) {
+          #hero {
+            padding: 90px 20px 56px !important;
+          }
+          .hero-content {
+            max-width: 100% !important;
+          }
+        }
+ 
+        /* ── Very small phones: stack buttons ── */
+        @media (max-width: 380px) {
+          #hero .hero-anim a {
+            width: 100% !important;
+            box-sizing: border-box;
           }
         }
       `}</style>

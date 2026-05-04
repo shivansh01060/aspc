@@ -1,104 +1,118 @@
-/* ── Google Fonts fallback (loaded in index.html) ── */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700;1,800&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap");
 
-/* ── Brand tokens ── */
-:root {
-  --cream: #faf7f0;
-  --warm-white: #fff8ed;
-  --spice-red: #c8421a;
-  --turmeric-gold: #f5a623;
-  --leaf-green: #5a8a2e;
-  --sun-yellow: #e8b820;
-  --dark-brown: #2c1810;
-  --mid-brown: #6b4c3b;
-  --deep-dark: #1a0f0a;
-
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
+/* ── Scroll jitter fix ── */
+html {
+  /* Reserves scrollbar width so layout never shifts when scrollbar appears/disappears */
+  scrollbar-gutter: stable;
+  /* Prevent horizontal overflow that causes side jitter */
+  overflow-x: hidden;
 }
 
-/* ── Reset ── */
+body {
+  overflow-x: hidden;
+  /* Smooth scrolling for all anchor jumps */
+  scroll-behavior: smooth;
+  /* Single unified serif family throughout */
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent layout shift from scrollbar */
+  width: 100%;
+}
+
+/* Prevent any element from causing horizontal scroll */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  max-width: 100%;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
+/* ── CSS Variables (brand tokens) ── */
+:root {
+  --cream: #faf7f0;
+  --cream-dark: #f5eed9;
+  --warm-white: #fff8ed;
+  --spice-red: #c8421a;
+  --spice-gold: #f5a623;
+  --spice-dark: #2c1810;
+  --spice-brown: #6b4c3b;
+
+  /* Font stacks */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "EB Garamond", Georgia, serif;
 }
 
-body {
+/* ── Base heading styles ── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+p,
+a,
+li,
+span,
+button,
+input,
+select,
+textarea,
+label {
   font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--dark-brown);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Custom scrollbar ── */
+/* ── Section utility ── */
+.section-pad {
+  padding: 120px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Scrollbar styling (WebKit) ── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--cream);
+  background: #faf7f0;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--spice-red);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--turmeric-gold);
-}
-
-/* ── Text selection ── */
-::selection {
-  background: var(--turmeric-gold);
-  color: var(--deep-dark);
-}
-
-/* ── Grain overlay (applied to App root) ── */
-.grain-overlay {
-  position: relative;
-}
-.grain-overlay::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: multiply;
-}
-
-/* ── Utility: visually hidden (accessibility) ── */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* ── Focus ring ── */
-:focus-visible {
-  outline: 2px solid var(--turmeric-gold);
-  outline-offset: 3px;
+  background: rgba(200, 66, 26, 0.25);
   border-radius: 4px;
 }
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 66, 26, 0.45);
+}
 
-/* ── Smooth anchor scroll offset (accounts for fixed navbar) ── */
-[id] {
-  scroll-margin-top: 80px;
+/* ── Prevent 3D canvas from breaking scroll ── */
+canvas {
+  display: block;
+  outline: none;
+}
+
+/* ── Smooth transitions for interactive elements ── */
+a,
+button {
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* ── Mobile responsiveness ── */
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 80px 0;
+  }
+  .container {
+    padding: 0 20px;
+  }
 }
