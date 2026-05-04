@@ -7,6 +7,7 @@ import QualitySection from "./components/sections/QualitySection";
 import ContactSection from "./components/sections/ContactSection";
 import ScrollToTop from "./components/ui/ScrollToTop";
 import VideoSection from "./components/sections/Videosection";
+import ReviewSection from "./components/sections/Reviewsection";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <StorySection />
         <ProductSection />
         <QualitySection />
+        <ReviewSection />
         <ContactSection />
       </main>
       <Footer />
