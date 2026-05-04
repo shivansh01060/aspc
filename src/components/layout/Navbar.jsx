@@ -70,7 +70,7 @@ export default function Navbar() {
       >
         <img
           src="/logo.png"
-          alt="Ashok Spices Clinic"
+          alt="Ashok Spice Clinic"
           onError={(e) => {
             e.target.style.display = "none";
           }}
@@ -88,7 +88,7 @@ export default function Navbar() {
               letterSpacing: "0.3px",
             }}
           >
-            Ashok Spices Clinic
+            Ashok Spice Clinic
           </span>
           <span
             style={{

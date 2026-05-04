@@ -336,9 +336,7 @@ export default function StorySection() {
                   color: "#F5A623",
                   marginBottom: "16px",
                 }}
-              >
-                The Human Touch
-              </span>
+              ></span>
               <h3
                 style={{
                   fontFamily: '"Playfair Display", Georgia, serif',
@@ -358,7 +356,7 @@ export default function StorySection() {
                 style={{
                   fontFamily: '"EB Garamond", Georgia, serif',
                   fontSize: "1.1rem",
-                  color: "rgba(250,247,240,0.8)",
+                  color: "rgb(255, 254, 252)",
                   lineHeight: 1.75,
                 }}
               >

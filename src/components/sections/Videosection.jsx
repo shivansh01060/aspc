@@ -90,7 +90,7 @@ export default function VideoSection() {
           style={{
             display: "inline-block",
             fontFamily: '"EB Garamond", Georgia, serif',
-            fontSize: "11px",
+            fontSize: "20px",
             fontWeight: 700,
             letterSpacing: "4px",
             textTransform: "uppercase",
@@ -98,7 +98,7 @@ export default function VideoSection() {
             marginBottom: "24px",
           }}
         >
-          Ashok Spices Clinic
+          Ashok Spice Clinic
         </span>
 
         {/* Headline */}
